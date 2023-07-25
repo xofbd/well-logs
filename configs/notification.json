@@ -1,0 +1,21 @@
+{
+  "LambdaFunctionConfigurations": [
+	{
+	  "Id": "RecordToDBEventConfiguration",
+	  "LambdaFunctionArn": "$arn",
+	  "Events": [
+		"s3:ObjectCreated:*"
+	  ],
+	  "Filter": {
+		"Key": {
+		  "FilterRules": [
+			{
+			  "Name": "suffix",
+			  "Value": ".tif"
+			}
+		  ]
+		}
+	  }
+	}
+  ]
+}
