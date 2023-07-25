@@ -1,7 +1,8 @@
 #!/bin/bash
-set -u
+set -eu
 
 source configs/config
+set +e
 source bin/usage.sh
 
 role_name="$FUNCTION_NAME"Role
