@@ -4,13 +4,13 @@ Parameters:
     Type: String
     Default: bp-de-well-logs-dbf
     Description: |
-    The resource name to use for all created resources
+      The resource name to use for all created resources
 Resources:
   S3Bucket:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: !Ref ResourceName
-      NotificationConfigurations:
+      NotificationConfiguration:
         LambdaConfigurations:
           - Event: s3:ObjectCreated:*
             Filter:
@@ -36,7 +36,7 @@ Resources:
   IAMRole:
     Type: AWS::IAM::Role
     Properties:
-      AssumedRolePolicyDocument:
+      AssumeRolePolicyDocument:
         Version: "2012-10-17"
         Statement:
           - Effect: Allow
@@ -55,9 +55,8 @@ Resources:
     Properties:
       Code:
         ZipFile: |
-        def lambda_handler(event, context):
-          return {"status_code": 200, "body": "hello!"}
-
+          def lambda_handler(event, context):
+              return {"status_code": 200, "body": "hello!"}
       Handler: lambda_function.lambda_handler
       FunctionName: !Ref ResourceName
       MemorySize: 1024
@@ -67,8 +66,8 @@ Resources:
   LambdaPermission:
     Type: AWS::Lambda::Permission
     Properties:
-      Action: lambda.InvokeFunction
-      FunctionName: !Ref ResourceName
+      Action: lambda:InvokeFunction
+      FunctionName: !GetAtt LambdaFunction.Arn
       Principal: s3.amazonaws.com
       SourceAccount: !Ref AWS::AccountId
-      SourceArn: !Ref S3Bucket.Arn
+      SourceArn: !Sub 'arn:aws:s3:::${ResourceName}'
