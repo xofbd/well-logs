@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -eu
+source configs/config
+
+aws cloudformation create-stack \
+    --stack-name "$RESOURCE_NAME" \
+    --template-body file://configs/pipeline.yaml \
+    --disable-rollback \
+    --capabilities CAPABILITY_NAMED_IAM \
+    --parameters ParameterKey=ResourceName,ParameterValue="$RESOURCE_NAME"

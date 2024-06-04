@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -eu
+
+source configs/config
+
+aws cloudformation delete-stack --stack-name "$RESOURCE_NAME"
+aws s3 rb s3://"$RESOURCE_NAME" --force
