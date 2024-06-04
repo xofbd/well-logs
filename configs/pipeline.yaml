@@ -4,3 +4,17 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: bp-de-well-logs-dbf
+  DynamoDB:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: Id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: Id
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 25
+        WriteCapacityUnits: 25
+      TableClass: STANDARD
+      TableName: bp-de-well-logs-dbf
