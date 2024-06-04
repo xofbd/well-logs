@@ -1,9 +1,15 @@
 AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+  ResourceName:
+    Type: String
+    Default: bp-de-well-logs-dbf
+    Description: |
+    The resource name to use for all created resources
 Resources:
   S3Bucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: bp-de-well-logs-dbf
+      BucketName: !Ref ResourceName
   DynamoDB:
     Type: AWS::DynamoDB::Table
     Properties:
@@ -17,4 +23,4 @@ Resources:
         ReadCapacityUnits: 25
         WriteCapacityUnits: 25
       TableClass: STANDARD
-      TableName: bp-de-well-logs-dbf
+      TableName: !Ref ResourceName
