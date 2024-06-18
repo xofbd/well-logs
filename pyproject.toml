@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "logs"
+version = "0.1.0"
+description = "Manage well logs with S3, DynamoDB, and AWS Lambda"
+authors = ["Don Fox <don@thedataincubator.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "~3.11"
+ImageHash = "4.3.1"
+boto3 = "1.34.128"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
