@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "logs"
+name = "wells"
 version = "0.1.0"
 description = "Manage well logs with S3, DynamoDB, and AWS Lambda"
 authors = ["Don Fox <don@thedataincubator.com>"]
