@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -u
+
+source configs/config
+
+aws s3 cp deployment.zip s3://"$RESOURCE_NAME"/deployment.zip
+aws lambda update-function-code \
+    --function-name "$RESOURCE_NAME" \
+    --s3-bucket "$RESOURCE_NAME" \
+    --s3-key deployment.zip
