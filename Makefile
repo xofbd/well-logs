@@ -4,6 +4,9 @@ PACKAGE_DIR := package
 .PHONY: all
 all: clean update-lambda
 
+requirements-dev.txt: poetry.lock
+	poetry export --format requirements.txt --with=dev > $@
+
 $(PACKAGE_DIR):
 	mkdir -p $@
 
