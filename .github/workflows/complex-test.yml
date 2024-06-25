@@ -20,7 +20,7 @@ jobs:
         poetry install
     - name: Run linting with Flake8
       run: |
-        poetry run flake8 --config=pyproject.toml wells
+        make lint
 
   unittest:
 
@@ -43,7 +43,7 @@ jobs:
       env:
         AWS_DEFAULT_REGION: "us-east-1"
       run: |
-        poetry run pytest -v -m "not integration"
+        make tests-unit
 
   integrationtest:
     runs-on: ubuntu-latest
@@ -65,7 +65,7 @@ jobs:
       env:
         AWS_DEFAULT_REGION: "us-east-1"
       run: |
-        poetry run pytest -v -m "integration"
+        make tests-integration
 
   post-test:
     runs-on: ubuntu-latest
