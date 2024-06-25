@@ -27,6 +27,17 @@ deployment.zip: | $(PACKAGE_DIR)
 update-lambda: deployment.zip
 	bin/lambda-update
 
+.PHONY: tests-unit
+tests-unit:
+	poetry run pytest -v -m "not integration"
+
+.PHONY: tests-integration
+tests-integration:
+	poetry run pytest -v -m "integration"
+
+.PHONY: tests
+tests: tests-unit tests-integration
+
 .PHONY: clean
 clean:
 	rm -rf $(PACKAGE_DIR) deployment.zip
