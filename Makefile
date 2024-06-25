@@ -27,6 +27,10 @@ deployment.zip: | $(PACKAGE_DIR)
 update-lambda: deployment.zip
 	bin/lambda-update
 
+.PHONY: lint
+lint:
+	poetry run flake8 --config=pyproject.toml wells
+
 .PHONY: tests-unit
 tests-unit:
 	poetry run pytest -v -m "not integration"
