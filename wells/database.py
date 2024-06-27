@@ -1,8 +1,11 @@
+import os
+
 from botocore.exceptions import ClientError
 import boto3
 
 from wells.hash_log import hash_log
 
+TABLE_NAME = os.getenv("RESOURCE_NAME")
 dynamodb = boto3.resource("dynamodb")
 
 
