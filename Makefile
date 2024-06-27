@@ -40,7 +40,7 @@ tests-integration:
 	poetry run pytest -v -m "integration"
 
 .PHONY: tests
-tests: tests-unit tests-integration
+tests: lint tests-unit tests-integration
 
 .PHONY: clean
 clean:
