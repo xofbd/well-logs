@@ -33,11 +33,11 @@ lint:
 
 .PHONY: tests-unit
 tests-unit:
-	poetry run pytest -v -m "not integration"
+	poetry run pytest --cov=wells --cov-report term-missing  -v -m "not integration"
 
 .PHONY: tests-integration
 tests-integration:
-	poetry run pytest -v -m "integration"
+	poetry run pytest --cov=wells --cov-report term-missing -v -m "integration"
 
 .PHONY: tests
 tests: lint tests-unit tests-integration
